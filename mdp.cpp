@@ -19,6 +19,7 @@ void creerMDP(vector<string> &dicoFR, vector<string> &vecPonctuation, string &md
     while(mdp.size() < 30){
         unsigned indexe = rand() % (dicoFR.size() - 1);
         string mot = dicoFR[indexe];
+        mot[0] = toupper(mot[0]);
         mdp += mot;
         mdp +=  to_string(rand() % 9);
         mdp += vecPonctuation[rand() % (vecPonctuation.size() - 1)];
