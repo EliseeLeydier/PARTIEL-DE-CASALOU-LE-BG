@@ -2,22 +2,40 @@
 #include <fstream>
 #include <vector>
 #include <ctime>
+#include <cctype>
 
 using namespace std;
+
 
 vector<string> litUnFichier (const string & chemin)
 {
     vector<string> toutesLesLignes;
     ifstream ifs (chemin);
-    if (!ifs) return toutesLesLignes;
-    for (string uneLigne;getline(ifs, uneLigne);)
-        toutesLesLignes.push_back(uneLigne);
+    if (!ifs) {
+        cout << "non" << endl;
+        return toutesLesLignes;
+    }
+    string ligne;
+    string uneLigne;
+    for (;getline(ifs, uneLigne);)
+        ligne = "";
+        for(unsigned i = 0; i < uneLigne.size(); ++i){
+
+            if(uneLigne[i] == ','){
+                toutesLesLignes.push_back(ligne);
+                ligne = "";
+            }
+            else{
+                ligne.push_back(uneLigne[i]);
+            }
+        }
+
     return toutesLesLignes;
 }
 
 string to_lower(string str){
     for(unsigned i = 0; i < str.size(); ++i){
-        str[i] = str[i] + 32;
+        str[i] = tolower(str[i]);
     }
     return str;
 }
