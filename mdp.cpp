@@ -15,10 +15,18 @@ vector<string> litUnFichier (const string & chemin)
     return toutesLesLignes;
 }
 
+string to_lower(string str){
+    for(unsigned i = 0; i < str.size(); ++i){
+        str[i] = str[i] + 32;
+    }
+    return str;
+}
+
+
 void creerMDP(vector<string> &dicoFR, vector<string> &vecPonctuation, string &mdp){
     while(mdp.size() < 30){
         unsigned indexe = rand() % (dicoFR.size() - 1);
-        string mot = dicoFR[indexe];
+        string mot = to_lower(dicoFR[indexe]);
         mot[0] = toupper(mot[0]);
         mdp += mot;
         mdp +=  to_string(rand() % 9);
